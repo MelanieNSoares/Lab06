@@ -27,5 +27,33 @@ public class Tabuleiro{
     vTabuleiro[i + (fator * foward)][j+ (fator * diagonal)] = pecaMovendo;
     
   }
+
+  public char getPeca(int i, int j){
+    if(vTabuleiro[i][j] == null){
+      return '-';
+    }
+    else if(vTabuleiro[i][j].time == 1){
+      return 'B';
+    }
+    else{
+      return 'P';
+    }
+  }
+
+  public void mostrarTabuleiro(){
+    for(int i=7; i>=0; i--){
+      int linha = i + 1;
+      System.out.print(linha + " ");
+      
+      for(int j=0; j<8; j++){
+
+        System.out.print(getPeca(i,j) + " ");
+
+      }
+
+      System.out.print("\n");
+    }
+    System.out.print("a" );
+  }
   
 }

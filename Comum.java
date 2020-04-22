@@ -4,8 +4,9 @@ public class Comum extends Peca {
     super(time);
   }
       
-  public int verificaMovimento(int init_row, int init_col, int fin_col, int fin_row,Tabuleiro tabuleiro){
-    verificaMovimento.super(int init_row, int init_col, int fin_col, int fin_row,Tabuleiro tabuleiro)
+  public int verificaMovimento(int init_row, int init_col,Tabuleiro tabuleiro, int foward, int diagonal){
+
+   return super.verificaMovimento(init_row, init_col,tabuleiro,foward,diagonal);
   }
 
   public void analisaMovimento(int init_row, int init_col, int fin_col, int fin_row,Tabuleiro tabuleiro){
@@ -15,13 +16,12 @@ public class Comum extends Peca {
       int foward = fin_row - init_row;
       int diagonal = fin_col - fin_row;
 
-      if( (time == 1 && foward == -1) || (time == 0 && foward == 1) )/// verifica se o time e o movimento esta orientado corretamente{
-        return 1; // movement fail;
-        tabuleiro.setLance()
+      if( (time == 1 && foward == -1) || (time == 0 && foward == 1) ){/// verifica se o time e o movimento esta orientado corretamente{
+      // movement fail;
       }
             
       if( (foward == 1 || foward == -1) && ( diagonal == -1 || diagonal == 1 ) ){ /// verifica se ha movimento retrogado
-        verificaMovimento();        
+        verificaMovimento(init_row, init_col,tabuleiro,foward,diagonal);        
       }
 
         

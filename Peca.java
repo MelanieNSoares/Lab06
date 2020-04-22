@@ -20,12 +20,13 @@ public class Peca{
 
     else{
       tabuleiro.move(foward,diagonal,init_row,init_col,1);/// espaco vazio portando pode se mover
-      tabuleiro.setLance()
+      tabuleiro.setLance(0);
       return 0;/// movement successs
     }
     
+   return 1; 
   }
 
   
-return 1;
+
 } 
