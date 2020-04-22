@@ -2,7 +2,7 @@ public class Main{
   public static void main(String args[]){
 
     Tabuleiro tabuleiro = new Tabuleiro();
-    tabuleiro.setLance(1);
+    tabuleiro.setLance(1); // time branco se move primeiro
 
   CSVReader csv = new CSVReader();
 	csv.setDataSource("entrada1.csv");
@@ -25,11 +25,11 @@ public class Main{
         }
 
         else if( (i<8 && i>=5) && ( (i % 2 != 0) && (j % 2 != 0) ) ) {
-          Comum comum = new Comum(0);
+          Comum comum = new Comum(-1);
           tabuleiro.createTable(comum,i,j);
         }
         else if ((i<8 && i>=5) && ((i % 2 == 0) && (j % 2 == 0))){
-          Comum comum = new Comum(0);
+          Comum comum = new Comum(-1);
           tabuleiro.createTable(comum,i,j);
         }
 
@@ -55,13 +55,13 @@ public class Main{
     fin_col = command.charAt(3) - 'a';
     fin_row = command.charAt(4) - '1';
 
-    if(tabuleiro.vTabuleiro[init_col][init_row].time != tabuleiro.getLance()){ /// verifica se a lance do time esta correto
-      i++;
-      j++;
+    if(tabuleiro.vTabuleiro[init_row][init_col].time != tabuleiro.getLance()){
+      System.out.println("nao eh vez do jogador");
       continue;
     }
 
     ((Comum)tabuleiro.vTabuleiro[init_row][init_col]).analisaMovimento(init_row,init_col,fin_col,fin_row,tabuleiro);
+
     i++;
     j++;
 
@@ -70,7 +70,7 @@ public class Main{
 
 
 
-
+tabuleiro.mostrarTabuleiro();
 
 
   }
