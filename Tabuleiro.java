@@ -23,11 +23,36 @@ public class Tabuleiro{
    
   }
 
+  public void seDama(Peca pecaMovendo,int i, int j, int foward,int diagonal){
+
+    if(pecaMovendo.time == 1){
+      if((foward + i) == 7){/// eles se torna um dama
+        Dama dama = new Dama(1);
+        vTabuleiro[7][j+diagonal] = dama;
+          System.out.println("wahoooo!1");
+      }
+    }
+    else{
+      if(foward + i == 0){/// eles se torna um dama
+        Dama dama = new Dama(-1);
+        vTabuleiro[0][j+diagonal] = dama;
+          System.out.println("wahoooo!2");
+      }
+    }
+
+  }
+
+    
+
+
   public void move(int foward, int diagonal, int i, int j){
     Peca pecaMovendo = vTabuleiro[i][j];
     vTabuleiro[i][j] = null;
     vTabuleiro[i + foward][j+  diagonal] = pecaMovendo;
-    
+
+    seDama(pecaMovendo,i,j,foward,diagonal);
+
+    mostrarTabuleiro();  
   }
 
   public char getPeca(int i, int j){
@@ -35,11 +60,13 @@ public class Tabuleiro{
       return '-';
     }
     else if(vTabuleiro[i][j].time == 1){
-      return 'B';
+      if(vTabuleiro[i][j] instanceof Dama == true){return 'b';}
+      else{return 'B';}
     }
     else{
-      return 'P';
-    }
+      if(vTabuleiro[i][j] instanceof Dama == true){return 'p';}
+      else{return 'P';}
+  }
   }
 
   public void mostrarTabuleiro(){

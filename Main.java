@@ -54,24 +54,26 @@ public class Main{
 
     fin_col = command.charAt(3) - 'a';
     fin_row = command.charAt(4) - '1';
+    
 
     if(tabuleiro.vTabuleiro[init_row][init_col].time != tabuleiro.getLance()){
       System.out.println("nao eh vez do jogador");
+      i++;
       continue;
     }
 
+    
+ 
     ((Comum)tabuleiro.vTabuleiro[init_row][init_col]).analisaMovimento(init_row,init_col,fin_col,fin_row,tabuleiro);
+    
+
+
+    }
 
     i++;
     j++;
 
   }
 
-
-
-
-tabuleiro.mostrarTabuleiro();
-
-
   }
-}
+

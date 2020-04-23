@@ -7,9 +7,22 @@ public class Comum extends Peca {
 
   public void analisaMovimento(int init_row, int init_col, int fin_col, int fin_row,Tabuleiro tabuleiro){
 
+    
+
     int foward = fin_row - init_row;
     int diagonal = fin_col - init_col;
 
+    if(tabuleiro.vTabuleiro[init_row][init_col].time == 1 && foward < 0){ /// peca comum querendo voltar pra tras
+
+      System.out.println("querendo voltar para tras1");
+      tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1);
+      return;
+    }
+    else if(tabuleiro.vTabuleiro[init_row][init_col].time == -1 && foward > 0){ /// peca comum querendo voltar pra tras 
+      System.out.println("querendo voltar pra tras2");
+      tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1);
+      return;
+    }
 
     //tentando se mover
     if((foward == 1 || foward == -1) && (diagonal == 1 || diagonal == -1)){
