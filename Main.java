@@ -55,18 +55,26 @@ public class Main{
     fin_col = command.charAt(3) - 'a';
     fin_row = command.charAt(4) - '1';
 
-    
+
+
+    if(tabuleiro.ultimaPeca != null && tabuleiro.vTabuleiro[init_row][init_col] == tabuleiro.ultimaPeca){/// if same piece as last piece to move
+      int x= fin_row - init_row,y = fin_col - init_col;///movement in x,y directions
+
+      if(Math.abs(x) > 1 && Math.abs(y) > 1 && tabuleiro.vTabuleiro[init_row][init_col] instanceof Comum == true ){ ///same common peice trying to do a double capture
+        tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1); // revert turn to allow attempt at double capture
+      }
+
+      if(tabuleiro.vTabuleiro[init_row + (x) / Math.abs(x)][init_col + y/Math.abs(y)] != null && tabuleiro.vTabuleiro[init_row][init_col] instanceof Dama == true ){//dama attempting double capture
+        tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1); // revert turn to allow attempt at double capture
+      }
+    }
+
+        
     if(tabuleiro.vTabuleiro[init_row][init_col].time != tabuleiro.getLance()){
       System.out.println("nao eh vez do jogador");
       i++;
       continue;
     }
-
-    /*if(tabuleiro.pecaMovendo != null && tabuleiro.vTabuleiro[init_row][init_col] == tabuleiro.pecaMovendo){/// if same piece as last piece to move
-      if(Math.abs(fin_row - init_row) > 1 && Math.abs(fin_col - init_col) > 1){ ///same common peice trying to do a double capture
-        tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1);
-      }
-    }*/
 
     
     if(tabuleiro.vTabuleiro[init_row][init_col] instanceof Comum == true){

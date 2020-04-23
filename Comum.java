@@ -1,4 +1,4 @@
-        public class Comum extends Peca {
+public class Comum extends Peca {
   
   public Comum (int time){
     super(time);
@@ -15,12 +15,12 @@
     if(tabuleiro.vTabuleiro[init_row][init_col].time == 1 && foward < 0){ /// peca comum querendo voltar pra tras
 
       System.out.println("querendo voltar para tras1");
-      tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1);
-      return;
+      tabuleiro.setLance(tabuleiro.vTabuleiro[init_col][init_col].time * -1);
+      return;///movement fail
     }
     else if(tabuleiro.vTabuleiro[init_row][init_col].time == -1 && foward > 0){ /// peca comum querendo voltar pra tras 
       System.out.println("querendo voltar pra tras2");
-      tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1);
+      tabuleiro.setLance(tabuleiro.vTabuleiro[init_row][init_col].time * -1);//movement fail
       return;
     }
 
@@ -28,7 +28,8 @@
     if((foward == 1 || foward == -1) && (diagonal == 1 || diagonal == -1)){
       if(tabuleiro.vTabuleiro[init_row + foward][init_col + diagonal] == null){
         tabuleiro.move(foward,diagonal,init_row,init_col);
-        tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1);
+        tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1);//movement sucess
+        return;
       }
     }
 
@@ -41,11 +42,13 @@
 
           tabuleiro.capture(foward,diagonal,init_row,init_col);
 
-          tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1);
+          tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1);///movement sucess
+          return;
         }
       }
     }
 
+  tabuleiro.setLance(tabuleiro.vTabuleiro[init_row][init_col].time * -1);///movement fail
   }
 
 

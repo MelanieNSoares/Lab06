@@ -12,57 +12,64 @@ public class Dama extends Peca {
     int straight = fin_row - init_row;
     int diagonal = fin_col - init_col;
 
+    if(Math.abs(straight) != Math.abs(diagonal)){
+       tabuleiro.setLance(tabuleiro.vTabuleiro[init_row][init_col].time * -1);
+      return; /// movement fail can only move diagonally
+    }
+
   System.out.println(straight + " " + diagonal);
 
-    int i, j, k = 1;
+    int i= straight / Math.abs(straight), 
+        j = diagonal / Math.abs(diagonal);
+    boolean possible = false;
 
-    if(straight < 0){
-      i = -1;
-    }else{i = 1;}
-
-    if(diagonal < 0){j = -1;}
-    else{j = 1;}
-    
     if(tabuleiro.vTabuleiro[fin_row][fin_col] == null){
       System.out.println("yes entered1");
-      boolean possible = true;
+
+      possible = true;
+
       while(possible && Math.abs(i) < Math.abs(straight) ){
         System.out.println("yes entered2");
-        if(tabuleiro.vTabuleiro[init_row + i][init_col+j] != null && tabuleiro.vTabuleiro[init_row + i][init_col+j].time != time){
+
+        if(tabuleiro.vTabuleiro[init_row + i][init_col+j] != null && tabuleiro.vTabuleiro[init_row + i][init_col+j].time == time){
           possible = false;
+          System.out.println("how");
 
         }
-        k++;
-        i = i * k;
-        i = j * k;
+        i = (Math.abs(i) + 1 )*(i/Math.abs(i));
+        j = (Math.abs(j) + 1 )*(j/Math.abs(j));
       }
 
-      System.out.println("yes entered3");
-      if(straight < 0){
-      i = -1;
-      }else{i = 1;}
 
-      if(diagonal < 0){j = -1;}
-      else{j = 1;}
-       k = 1;
+    System.out.println(possible);
 
+    if(possible){
+    System.out.println("yes entered3");
+
+    i= straight / Math.abs(straight);
+    j = diagonal / Math.abs(diagonal);
+
+      
       while(Math.abs(i) < Math.abs(straight)){
         tabuleiro.vTabuleiro[init_row + i][init_col+j] = null;
         System.out.println("yes entered4");
-        k++;
-        i = i * k;
-        i = j * k;
+        
+        i = (Math.abs(i) + 1 )*(i/Math.abs(i));
+        j = (Math.abs(j) + 1 )*(j/Math.abs(j));
 
       }
 
       tabuleiro.vTabuleiro[fin_row][fin_col] = tabuleiro.vTabuleiro[init_row][init_col];
 
       tabuleiro.vTabuleiro[init_row][init_col] = null;
-      tabuleiro.pecaMovendo = tabuleiro.vTabuleiro[fin_row][fin_col];
+      tabuleiro.ultimaPeca = tabuleiro.vTabuleiro[fin_row][fin_col];
+      tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1);
+      tabuleiro.mostrarTabuleiro();
+      return;///movement success
     }
-  tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1);
-
-  tabuleiro.mostrarTabuleiro();
+    
+    }
+  tabuleiro.setLance(tabuleiro.vTabuleiro[init_row][init_col].time * -1);///movement fail
   }
    
   }
