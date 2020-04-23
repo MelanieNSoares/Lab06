@@ -12,14 +12,19 @@ public class Comum extends Peca {
     int foward = fin_row - init_row;
     int diagonal = fin_col - init_col;
 
+    if(Math.abs(foward) != Math.abs(diagonal)){
+      tabuleiro.setLance(tabuleiro.vTabuleiro[init_col][init_col].time * -1);
+      return;/// nao eh movimento diagonal
+    }
+
     if(tabuleiro.vTabuleiro[init_row][init_col].time == 1 && foward < 0){ /// peca comum querendo voltar pra tras
 
-      System.out.println("querendo voltar para tras1");
+      System.out.println("peca querendo voltar para tras");
       tabuleiro.setLance(tabuleiro.vTabuleiro[init_col][init_col].time * -1);
       return;///movement fail
     }
     else if(tabuleiro.vTabuleiro[init_row][init_col].time == -1 && foward > 0){ /// peca comum querendo voltar pra tras 
-      System.out.println("querendo voltar pra tras2");
+      System.out.println("querendo voltar pra tras");
       tabuleiro.setLance(tabuleiro.vTabuleiro[init_row][init_col].time * -1);//movement fail
       return;
     }

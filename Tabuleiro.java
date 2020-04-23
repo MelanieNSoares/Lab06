@@ -29,21 +29,43 @@ public class Tabuleiro{
       if((foward + i) == 7){/// eles se torna um dama
         Dama dama = new Dama(1);
         vTabuleiro[7][j+diagonal] = dama;
-          System.out.println("wahoooo!1");
+
       }
     }
     else{
       if(foward + i == 0){/// eles se torna um dama
         Dama dama = new Dama(-1);
         vTabuleiro[0][j+diagonal] = dama;
-          System.out.println("wahoooo!2");
+
       }
     }
 
   }
+  
+  public void moveDama(int straight,int diagonal,int init_row, int init_col, int fin_row, int fin_col){
 
-    
 
+    int i= straight / Math.abs(straight);
+    int j = diagonal / Math.abs(diagonal);
+
+      
+      while(Math.abs(i) < Math.abs(straight)){
+        vTabuleiro[init_row + i][init_col+j] = null;
+        
+        i = (Math.abs(i) + 1 )*(i/Math.abs(i));
+        j = (Math.abs(j) + 1 )*(j/Math.abs(j));
+
+      }
+
+      vTabuleiro[fin_row][fin_col] = vTabuleiro[init_row][init_col];
+
+      vTabuleiro[init_row][init_col] = null;
+      ultimaPeca = vTabuleiro[fin_row][fin_col];
+      setLance(vTabuleiro[fin_row][fin_col].time * -1);
+      
+      System.out.println((char) (init_col + 97) +""+(char)(init_row + 49) + " para " + (char)(fin_col + 97)+""+(char)(fin_row + 49));
+      mostrarTabuleiro();
+  }
 
   public void move(int foward, int diagonal, int i, int j){
     Peca pecaMovendo = vTabuleiro[i][j];
@@ -54,7 +76,7 @@ public class Tabuleiro{
     seDama(pecaMovendo,i,j,foward,diagonal);
 
     ultimaPeca = pecaMovendo;
-
+    System.out.println((char) (j + 97) +""+(char)(i + 49) + " para " + (char)(j + diagonal + 97)+""+(char)(foward + i + 49));
     mostrarTabuleiro();  
   }
 
@@ -86,7 +108,7 @@ public class Tabuleiro{
       System.out.print("\n");
     }
     System.out.println("\t" + "a\t"+"b\t"+"c\t"+ "d\t"+ "e\t"+ "f\t"+ "g\t" + "h"  + "\n");
-    System.out.print("\n"+ "\n" );
+    System.out.print("\n");
   }
 
 

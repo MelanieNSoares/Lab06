@@ -40,7 +40,7 @@ public class Main{
       
       }
     }
-
+    System.out.println("Tabuleiro inicialmente: ");
     tabuleiro.mostrarTabuleiro();
 
   int init_col, init_row, fin_col, fin_row, i=0,j=0;
