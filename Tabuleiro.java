@@ -5,7 +5,7 @@ public class Tabuleiro{
   Peca ultimaPeca; // ultima peca a se mover
   
   public void setLance(int lance){
-    this.lance = lance; // 1 lance do time branco; 0 lance do time preto
+    this.lance = lance; // 1 lance do time branco; -1 lance do time preto
   }
 
   public int getLance(){
@@ -50,7 +50,10 @@ public class Tabuleiro{
     vTabuleiro[i][j] = null;
     vTabuleiro[i + foward][j+  diagonal] = pecaMovendo;
 
+
     seDama(pecaMovendo,i,j,foward,diagonal);
+
+    ultimaPeca = pecaMovendo;
 
     mostrarTabuleiro();  
   }

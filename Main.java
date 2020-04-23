@@ -54,24 +54,34 @@ public class Main{
 
     fin_col = command.charAt(3) - 'a';
     fin_row = command.charAt(4) - '1';
-    
 
+    
     if(tabuleiro.vTabuleiro[init_row][init_col].time != tabuleiro.getLance()){
       System.out.println("nao eh vez do jogador");
       i++;
       continue;
     }
 
-    
- 
-    ((Comum)tabuleiro.vTabuleiro[init_row][init_col]).analisaMovimento(init_row,init_col,fin_col,fin_row,tabuleiro);
-    
+    /*if(tabuleiro.pecaMovendo != null && tabuleiro.vTabuleiro[init_row][init_col] == tabuleiro.pecaMovendo){/// if same piece as last piece to move
+      if(Math.abs(fin_row - init_row) > 1 && Math.abs(fin_col - init_col) > 1){ ///same common peice trying to do a double capture
+        tabuleiro.setLance(tabuleiro.vTabuleiro[fin_row][fin_col].time * -1);
+      }
+    }*/
 
+    
+    if(tabuleiro.vTabuleiro[init_row][init_col] instanceof Comum == true){
+    ((Comum)tabuleiro.vTabuleiro[init_row][init_col]).analisaMovimento(init_row,init_col,fin_col,fin_row,tabuleiro);
+    }
+
+    else if(tabuleiro.vTabuleiro[init_row][init_col] instanceof Dama == true){
+      ((Dama)tabuleiro.vTabuleiro[init_row][init_col]).analisaMovimento(init_row,init_col,fin_col,fin_row,tabuleiro);
+    }
+    
+    i++;
+    j++;
 
     }
 
-    i++;
-    j++;
 
   }
 

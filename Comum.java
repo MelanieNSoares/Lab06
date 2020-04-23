@@ -1,4 +1,4 @@
-public class Comum extends Peca {
+        public class Comum extends Peca {
   
   public Comum (int time){
     super(time);
